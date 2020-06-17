@@ -1,0 +1,43 @@
+#basementArr, #pillarsArr, #coveringArr {    
+    margin-top: 20px;   
+}
+
+p {
+    display: inline;
+    margin-block-start: 1px;
+    margin-block-end: 1px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+hr {
+    display: block;
+    height: 5px;
+    width: 100%;
+    background-color: coral;
+    z-index: -5;
+}
+
+#computeDiv {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+}
+
+.formCol {
+    display: inline-block;
+}
+
+#lineDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+#line {
+    width: 500px;
+    height: 10px;
+    background-color: coral;
+}

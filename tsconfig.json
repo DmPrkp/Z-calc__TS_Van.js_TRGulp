@@ -1,0 +1,16 @@
+{
+    "files": [
+        "./src/main.ts",        
+        "./src/bootstrapData.ts",
+        "./src/imgUpload.ts",
+        "./src/headerUpload.ts",
+        "./src/uploadRadio.ts",
+        "./src/plusUpload.ts",
+        "./src/CardsConstructor.ts",
+        "./src/formListener.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny":true,
+        "target": "es5"
+    }
+}

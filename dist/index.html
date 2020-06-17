@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расчет калькулятор забора ограждения</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+        <div class="container">
+            <a class="navbar-brand" href="#">Z_calc</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" id="fenceDiv">
+        <h2>Укажите конструкцию ограждения:</h2>
+        <form id="fenceForm">
+            <div class="row">
+                <h3 class="group-label col-12 col-sm-3 mt-sm-auto">Фундамент:</h3>
+                <div class="col-12 col-sm-9">
+                    <div id="basementArr" class="row row-cols-3"></div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <h3 class="group-label col-12 col-sm-3 mt-sm-auto">Колонны:</h3>
+                <div class="col-12 col-sm-9">
+                    <div id="pillarsArr" class="row row-cols-3"></div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <h3 class="group-label col-12 col-sm-3 mt-sm-auto">Покрытие:</h3>
+                <div class="col-12 col-sm-9">
+                    <div id="coveringArr" class="row row-cols-3"></div>
+                </div>
+            </div>
+            <hr>
+            <div class="container">
+                <button type="submit" class="btn btn-primary btn-lg" id="btnNext">Далее</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container mt-5 d-none" id="block2" >
+        <div>
+            <h5>Выбраная конструкция ограждения:</h5>
+            <div id="constructOutput">
+
+            </div>
+        </div>
+        <form class="mt-5" id="computeForm" name="computeForm">
+            <legend>Укажите длинны прямых участков, чем они начинается и заканчивается:</legend>
+            <button class="btn btn-success m-3" role="button" id="addBtn">+ добавить отрезок</button>
+            
+                <fieldset id="lineForm" class="border border-warning m-2 p-5">
+                    <div id="computeDiv">
+                        <div class="formCol">
+                            <div class="form-group mt-5 mx-1">
+                                <select class="form-control" id="firstPoints1" [formControl]="selectControl">
+                                    <option name="" value="Угол поворота">Угол поворота</option>
+                                    <option name="" value="Край с опорой">Край с опорой</option>
+                                    <option name="" value="Край без опоры">Край без опоры</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="formCol" id="lineDiv">
+                            <p style="width: 15rem; align-self: center;" class="my-4">
+                                <input class="form-control form-control-sm" type="text"
+                                    placeholder="введите длиину участка в метрах" id="inputMetr" name="inputMetr">
+                            </p>
+                            <p id="line"></p>
+                        </div>
+                        <div class="formCol">
+                            <div class="form-group mt-5 mx-1">
+                                <select class="form-control" id="firstPoints2">
+                                    <option name="point2" value="Угол поворота">Угол поворота</option>
+                                    <option name="point2" value="Край с опорой">Край с опорой</option>
+                                    <option name="point2" value="Край без опоры">Край без опоры</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+           
+            <button type="submit" class="btn btn-primary btn-lg mt-2" id="btnCompute">Рассчитать</button>
+        </form>
+        <!--<button class="btn btn-tg btn-danger m-3" role="button" id="delBtn">X</button>-->
+    </div>
+
+    <footer class="mt-5">
+
+    </footer>
+    <script src="bundle.js"></script>
+    <script src="fenceline.js"></script>
+</body>
+
+</html>
