@@ -26,8 +26,6 @@ export function innerDivLine(arr: Array<any>, divEl: HTMLElement, cnt: number) {
 			div.innerText = `длинна участка:  ${arr[i]} м.`			
 		} else if (i == 2) {
 			div.innerText = `конец участка:  ${arr[i]}`			
-		} else {
-			div.innerText = `необходимое количество столбов: ${arr[i]}`;			
 		}
 		divEl.appendChild(div);				
 	}
@@ -48,27 +46,27 @@ export function calcPillarNum(arr: Array<any>) {
 		calcPillar = pillar + 0.5
 	} else if (arr[0] == "Край с опорой" || arr[2] == "Край с опорой") {
 		calcPillar = calcPillar + 1
-	}
+	}	
 	return calcPillar;
 
 }
 
-export function getSelected({ el1, el2, arr }: { el1: any; el2: any; arr: Array<string>; }) {
+export function getSelected({ el1, el2, arr }: { el1: any; el2: any; arr: Array<any>; }) {
 	for (let i = 0; i < el1.length; i++) {
 		if (el1[i].selected) {
 			arr.push(el1[i].value);
 		}
 	}
 
-	let lineLength: HTMLElement = document.querySelector("#inputMetr");
-	let _lineLength: string = lineLength.value;
+	let lineLength: any = document.querySelector("#inputMetr");
+	let _lineLength: number = +lineLength.value;
+	console.log(_lineLength);
 	arr.push(_lineLength);
 
 	for (let i = 0; i < el2.length; i++) {
 		if (el2[i].selected) {
 			arr.push(el2[i].value);
 		}
-	}
-	console.log(arr);
+	}	
 }
 

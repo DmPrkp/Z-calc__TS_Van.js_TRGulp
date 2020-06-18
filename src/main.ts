@@ -1,13 +1,24 @@
 import { basementObj, pillarsObj, coverObj } from './bootstrapData';
 import { CardsConstructor } from './CardsConstructor';
 import { innerDiv, innerDivLine, calcPillarNum, getSelected } from './formListener';
+import { showObj, reinforcedBaseCulc } from './showObj';
 
-var arrForm: Array<any> = [];
-let objLine : {
-	type: Array<string>,
-	[key: number]: Array<any>,	
+const arrForm: Array<any> = [];
+const allLine: Array<any> = [];
+const objLine : {
+	type: Array<any>,
+	allpillarNum: number,
+	fenceLength: number,
+	arrLine: Array<any>,
+	freezDepth: number,
+	hight: number,	
 } = {
-	type: arrForm,	
+	type: arrForm,
+	fenceLength: 0,
+	allpillarNum: 0,
+	arrLine: allLine,
+	freezDepth: 1,
+	hight: 2,	
 }
 
 
@@ -19,42 +30,15 @@ const addBtn: HTMLElement = document.getElementById("addBtn");
 const block2: HTMLElement = document.querySelector("#block2");
 const hr :HTMLElement = document.createElement('hr');
 const btnCompute : HTMLElement = document.querySelector('#btnCompute')
+const finalCalcDiv : HTMLElement = document.querySelector("#finalCalcDiv")
+const сalcContentDiv : HTMLElement = document.querySelector("#сalcContent")
 let cnt = 0;
-
-
 
 new CardsConstructor("basementArr", basementObj);
 new CardsConstructor("pillarsArr", pillarsObj);
 new CardsConstructor("coveringArr", coverObj);
 
-
-
-addBtn.addEventListener('click', (e: any) => {
-	e.preventDefault();
-	let arrLine: Array<any> = [];
-	let lineForm: HTMLElement = document.getElementById("lineForm");
-	let newForm = lineForm.cloneNode(true);
-	let startPoint: HTMLElement = document.querySelector("#firstPoints1");
-	let lastPoint: HTMLElement = document.querySelector("#firstPoints2");	
-	let hr :HTMLElement = document.createElement('hr');
-
-	getSelected({ el1: startPoint, el2: lastPoint, arr: arrLine });
-
-	let pillarNum = calcPillarNum(arrLine);
-	arrLine.push(pillarNum);
-
-	upCnt();
-	innerDivLine(arrLine, outputDiv, cnt);
-	outputDiv.append(hr);
-	lineForm.remove();
-
-	objLine[cnt] = arrLine;
-	console.log(objLine);	
-	addBtn.after(newForm);	
-})
-
-
-
+//Кнопка далее на превой странице
 form.addEventListener('submit', (e: any) => {
 	e.preventDefault();
 	if (document.querySelector(<any>"input[name='basement']:checked") != null) {
@@ -67,7 +51,7 @@ form.addEventListener('submit', (e: any) => {
 		var answerCover: string = document.querySelector(<any>"input[name='cover']:checked").value;
 	} else { answerCover = "" }
 
-	arrForm.push(answerBasement, answerPillar, answerCover, 1, 2);
+	arrForm.push(answerBasement, answerPillar, answerCover);
 
 	constrDiv.setAttribute("style", "display: none;");
 	block2.classList.remove("d-none");
@@ -76,20 +60,42 @@ form.addEventListener('submit', (e: any) => {
 	outputDiv.append(hr)
 });
 
+//Кнопка добавить участок 
+addBtn.addEventListener('click', (e: any) => {
+	e.preventDefault();
+	let arrLine: Array<any> = [];
+	let lineForm: HTMLElement = document.getElementById("lineForm");
+	let newForm = lineForm.cloneNode(true);
+	let startPoint: HTMLElement = document.querySelector("#firstPoints");
+	let lastPoint: HTMLElement = document.querySelector("#secondPoints");	
+	let hr :HTMLElement = document.createElement('hr');
+
+	getSelected({ el1: startPoint, el2: lastPoint, arr: arrLine });
+
+	let pillarNum : number = calcPillarNum(arrLine);	
+	allLine.push(arrLine);		
+	objLine.allpillarNum = objLine.allpillarNum + pillarNum;
+	objLine.fenceLength =objLine.fenceLength + arrLine[1];
+
+	upCnt();
+	innerDivLine(arrLine, outputDiv, cnt);
+	outputDiv.append(hr);
+	lineForm.remove();
+
+	console.log(objLine);	
+	addBtn.after(newForm);	
+})
 function upCnt() {cnt++;}
 
+//Кнопка расчитать на второй странице
 btnCompute.addEventListener("click", (e)=>{
 	e.preventDefault();
-	block2.classList.add("d-none")
-	lengthCompute(objLine)
-})
+	block2.classList.add("d-none");
+	finalCalcDiv.classList.remove("d-none");
 
+	innerDiv(arrForm, сalcContentDiv);
+	showObj(objLine, сalcContentDiv);
+	сalcContentDiv.append(hr);
 
-function lengthCompute (objFence: object) {	
-
-	console.log()
-	/*for (let i = 0; i < objFence.length; i++) {
-		if (el1[i].selected) {
-			arr.push(el1[i].value);
-		}*/
-}
+	reinforcedBaseCulc(objLine);
+});

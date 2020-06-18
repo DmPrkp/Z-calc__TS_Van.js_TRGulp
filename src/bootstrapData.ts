@@ -18,8 +18,7 @@ export var basementObj = [
     {
         id: 1.3,
         img: "img/basement/Pillar.png",
-        name: `Колонны в грунте
-        (без фундамента)`,
+        name: `Без фундамента`,
         plus: ["Стоимость"],
         minus: ["Недолговечность(10-20 лет)"],
         type: "basement",

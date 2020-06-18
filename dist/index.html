@@ -86,7 +86,7 @@
                     <div id="computeDiv">
                         <div class="formCol">
                             <div class="form-group mt-5 mx-1">
-                                <select class="form-control" id="firstPoints1" [formControl]="selectControl">
+                                <select class="form-control" id="firstPoints" [formControl]="selectControl">
                                     <option name="" value="Угол поворота">Угол поворота</option>
                                     <option name="" value="Край с опорой">Край с опорой</option>
                                     <option name="" value="Край без опоры">Край без опоры</option>
@@ -102,7 +102,7 @@
                         </div>
                         <div class="formCol">
                             <div class="form-group mt-5 mx-1">
-                                <select class="form-control" id="firstPoints2">
+                                <select class="form-control" id="secondPoints">
                                     <option name="point2" value="Угол поворота">Угол поворота</option>
                                     <option name="point2" value="Край с опорой">Край с опорой</option>
                                     <option name="point2" value="Край без опоры">Край без опоры</option>
@@ -115,6 +115,15 @@
             <button type="submit" class="btn btn-primary btn-lg mt-2" id="btnCompute">Рассчитать</button>
         </form>
         <!--<button class="btn btn-tg btn-danger m-3" role="button" id="delBtn">X</button>-->
+    </div>
+    <div class = "container d-none" id="finalCalcDiv">
+        <H3>Выбраная конструкция ограждения и ее характеристики:</H3>
+        <div id="сalcContent">
+
+        </div>
+        <div id="сalcContent2">
+
+        </div>
     </div>
 
     <footer class="mt-5">
